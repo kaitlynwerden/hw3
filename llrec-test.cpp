@@ -67,8 +67,14 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
-
+class IsOddFunctor
+{
+public: 
+  bool operator()(int x) 
+  {
+    return x % 2;
+  }
+};
 
 
 int main(int argc, char* argv[])
@@ -77,17 +83,23 @@ int main(int argc, char* argv[])
         cout << "Please provide an input file" << endl;
         return 1;
     }
-
+  
+  	
     // -----------------------------------------------
     // Feel free to update any code below this point
     // -----------------------------------------------
     Node* head = readList(argv[1]);
     cout << "Original list: ";
     print(head);
+  
+    IsOddFunctor f;
+  	head = llfilter<IsOddFunctor>(head, f);
+  	print(head);
 
+  	// call our function on head with a good test function
+    // print out the result
+  
     // Test out your linked list code
-
-
 
     
     return 0;
