@@ -14,6 +14,7 @@ struct Node
 };
 
 
+
 /**
  * Given a linked list pointed to by head, creates two lists
  * where all values less than or equal to the pivot value are
@@ -81,6 +82,30 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+  
+  //base case: head is null
+  if (head == NULL)
+  {
+    return NULL;
+  }
+  //do the work: remove or don't remove the node
+  if (pred(head->val) == true)
+  {
+    Node* next = head->next;
+    delete head;
+    return llfilter(next, pred);
+  }
+  else 
+  {
+    // don't remove the node
+
+    // recurse onto the next nodes
+    head->next = llfilter(head->next, pred);
+    // return what the previous node's next should be
+    return head;
+  }
+  
+  //recursive step: go to next node
 
 
 }
